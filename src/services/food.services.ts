@@ -1,9 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import {
-  ICreateFood,
-  IFood,
-  IUpdateFood,
-} from "../interfaces/food/interface.food";
+import { ICreateFood, IUpdateFood } from "../interfaces/food/interface.food";
 
 const prisma = new PrismaClient();
 
@@ -53,6 +49,7 @@ export const updateFood = async (body: IUpdateFood) => {
       name: body.name,
       ingredients: body.ingredients,
       steps: body.steps,
+      description: body.description,
     },
   });
 };

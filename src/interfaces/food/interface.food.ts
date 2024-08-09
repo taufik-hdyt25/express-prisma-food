@@ -15,6 +15,7 @@ export interface ICreateFood {
   categoryId: number;
   name: string;
   image: string;
+  description: string;
   steps: string[];
   ingredients: string[];
 }
@@ -22,6 +23,7 @@ export interface ICreateFood {
 export interface IUpdateFood {
   id: number;
   categoryId: number;
+  description: string;
   name: string;
   image: string;
   steps: string[];

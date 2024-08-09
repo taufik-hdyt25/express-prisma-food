@@ -19,6 +19,7 @@ model foods {
   categoryId  Int
   name        String
   image       String
+  description String
   steps       String[]
   ingredients String[]
   createdAt   DateTime   @default(now())

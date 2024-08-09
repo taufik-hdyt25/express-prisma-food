@@ -12,7 +12,7 @@ import { ICreateFood } from "../interfaces/food/interface.food";
 import { validateFood } from "../validator/food.validator";
 import { validationResult } from "express-validator";
 import cloudinary from "../utils/cloudinaryConfig";
-import { deleteImageCloudinary } from "../helper/deleteImageCloudinary";
+import { deleteImageCloudinary } from "../helpers/deleteImageCloudinary";
 
 export const getAllFoods = async (
   req: Request,
@@ -83,7 +83,7 @@ export const postFood = async (req: Request, res: Response) => {
 
     try {
       // Extract form data from the request
-      const { name, categoryId, steps, ingredients } = req.body;
+      const { name, categoryId, steps, ingredients, description } = req.body;
 
       if (!name) return res.status(400).json({ message: "Name not empty" });
       if (!categoryId)
@@ -113,6 +113,7 @@ export const postFood = async (req: Request, res: Response) => {
         ingredients: ingredientsArray,
         name: name,
         steps: stepsArray,
+        description: description,
       };
 
       // Store the new food item in the database
@@ -125,9 +126,7 @@ export const postFood = async (req: Request, res: Response) => {
       if (error instanceof PrismaClientValidationError) {
         return res.status(400).json({ error_createFood: error.message });
       } else {
-        return res
-          .status(500)
-          .json({ error_createFood: "An unexpected error occurred." });
+        return res.status(500).json({ error_createFood: error });
       }
     }
   });
@@ -163,7 +162,7 @@ export const putFood = async (req: Request, res: Response) => {
 
     try {
       const { id } = req.params; // Get the ID from request params
-      const { name, categoryId, steps, ingredients } = req.body;
+      const { name, categoryId, steps, ingredients, description } = req.body;
 
       // Validate input data
       if (!name)
@@ -206,6 +205,7 @@ export const putFood = async (req: Request, res: Response) => {
         ingredients: ingredientsArray,
         name: name,
         steps: stepsArray,
+        description: description,
       };
 
       // Update the food item in the database

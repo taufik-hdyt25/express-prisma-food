@@ -1,6 +1,6 @@
 import { PrismaClientValidationError } from "@prisma/client/runtime/library";
 import { Request, Response } from "express";
-import { deleteImageCloudinary } from "../helper/deleteImageCloudinary";
+import { deleteImageCloudinary } from "../helpers/deleteImageCloudinary";
 import { ICreateUser } from "../interfaces/user/interface.user";
 import { upload, uploadToCloudinary } from "../middlewares/uploadCloudinary";
 import {
@@ -15,6 +15,7 @@ import {
   findUsers,
   updateUserById,
 } from "../services/user.services";
+import { response } from "../helpers/response";
 
 export const getAllUsers = async (
   req: Request,
@@ -135,11 +136,8 @@ export const updateUser = async (req: Request, res: Response) => {
 
     const update = await updateUserById(body);
 
-    return res.status(200).json({
-      user: update,
-      message: "Update user success",
-    });
+    return response(res, update, "Update user success", 200);
   } catch (error) {
-    return res.status(500).json({ error });
+    return response(res, null, "Server update user error", 500);
   }
 };
