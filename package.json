@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon",
     "migrate": "prisma migrate deploy",
-    "start": "if [ \"$RUN_MIGRATIONS\" = \"true\" ]; then prisma migrate deploy; fi && nodemon"
+    "start": "if [ -z \"$(prisma migrate status --schema=./prisma/schema.prisma --json | jq -r .pendingMigrationCount)\" ]; then echo 'No pending migrations'; else echo 'Pending migrations found' && prisma migrate deploy; fi && nodemon"
   },
   "dependencies": {
     "@cloudinary/url-gen": "^1.20.0",
