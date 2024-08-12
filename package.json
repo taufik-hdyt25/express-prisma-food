@@ -4,7 +4,7 @@
   "main": "index.ts",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon"
+    "start": "nodemon"
   },
   "dependencies": {
     "@cloudinary/url-gen": "^1.20.0",
