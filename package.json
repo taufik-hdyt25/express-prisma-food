@@ -4,7 +4,9 @@
   "main": "index.ts",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon"
+    "dev": "nodemon",
+    "migrate": "prisma migrate deploy",
+    "start": "if [ \"$RUN_MIGRATIONS\" = \"true\" ]; then prisma migrate deploy; fi && nodemon"
   },
   "dependencies": {
     "@cloudinary/url-gen": "^1.20.0",
