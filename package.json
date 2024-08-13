@@ -4,9 +4,9 @@
   "main": "index.ts",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon",
-    "migrate": "prisma migrate deploy",
-    "start": "if [ -z \"$(prisma migrate status --schema=./prisma/schema.prisma --json | jq -r .pendingMigrationCount)\" ]; then echo 'No pending migrations'; else echo 'Pending migrations found' && prisma migrate deploy; fi && nodemon"
+    "migrate": "yarn prisma migrate dev",
+    "dev": "yarn migrate && nodemon",
+    "start": "yarn migrate && nodemon"
   },
   "dependencies": {
     "@cloudinary/url-gen": "^1.20.0",
