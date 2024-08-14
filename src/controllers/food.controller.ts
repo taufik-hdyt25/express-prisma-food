@@ -110,9 +110,9 @@ export const postFood = async (req: Request, res: Response) => {
       const newFood: ICreateFood = {
         categoryId: Number(categoryId),
         image: imageUrl,
-        ingredients: ingredientsArray,
+        ingredients: ingredients,
         name: name,
-        steps: stepsArray,
+        steps: steps,
         description: description,
       };
 
