@@ -102,17 +102,17 @@ export const postFood = async (req: Request, res: Response) => {
       });
 
       // Parse steps and ingredients into arrays
-      const stepsArray = steps.split(",");
-      const ingredientsArray = ingredients.split(",");
+      const stepsArray = Array(steps);
+      const ingredientsArray = Array(ingredients);
       const imageUrl = req.file?.path || req.url; // Ensure image URL is correctly set
 
       // Create the new food object
       const newFood: ICreateFood = {
         categoryId: Number(categoryId),
         image: imageUrl,
-        ingredients: ingredients,
+        ingredients: ingredientsArray,
         name: name,
-        steps: steps,
+        steps: stepsArray,
         description: description,
       };
 
