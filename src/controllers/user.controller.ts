@@ -1,21 +1,15 @@
 import { PrismaClientValidationError } from "@prisma/client/runtime/library";
 import { Request, Response } from "express";
-import { deleteImageCloudinary } from "../helpers/deleteImageCloudinary";
+import { response } from "../helpers/response";
 import { ICreateUser } from "../interfaces/user/interface.user";
-import { upload, uploadToCloudinary } from "../middlewares/uploadCloudinary";
-import {
-  deleteFoodById,
-  findFoodById,
-  updateFood,
-} from "../services/food.services";
 import {
   createUser,
+  deleteUserById,
   findUserById,
   findUserByModel,
   findUsers,
   updateUserById,
 } from "../services/user.services";
-import { response } from "../helpers/response";
 
 export const getAllUsers = async (
   req: Request,
@@ -115,7 +109,7 @@ export const deleteUser = async (req: Request, res: Response) => {
         message: "User not found",
       });
 
-    await deleteFoodById(id);
+    await deleteUserById(id);
 
     return res.status(200).json({
       message: "Delete user success",
