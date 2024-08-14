@@ -55,7 +55,7 @@ export const updateFood = async (body: IUpdateFood) => {
 };
 
 export const deleteFoodById = async (id: number) => {
-  return await prisma.users.delete({
+  return await prisma.foods.delete({
     where: {
       id: id,
     },
